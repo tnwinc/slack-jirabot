@@ -15,12 +15,39 @@ const config = {
     customFields: {
 
     },
-    response: 'full' // full or minimal
+    atResponseFormat: 'full',	
+    responseFormat: 'micro'
   },
   slack: {
     token: 'xoxb-Your-Token',
     autoReconnect: true
   },
-  usermap: {}
+  usermap: {},
+  channelFormats: {},
+  responseFormats: {
+    micro: {
+	  title: '`${issue.key}: ${issue.fields.summary}`',
+      description: false,
+      hideFooter: true,
+      respondInThread: true
+    },
+    minimal: {
+      description: true,
+      pretext: '`Here is some information on ${issue.key}`'
+    },
+    full: {
+      description: true,
+      pretext: '`Here is some information on ${issue.key}`',
+      fields: [
+        'Created',
+        'Updated',
+        'Status',
+        'Priority',
+        'Reporter',
+        'Assignee',
+        'Sprint'
+      ]
+    }
+  }  
 };
 module.exports = config;
